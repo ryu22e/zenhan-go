@@ -9,4 +9,42 @@ Run the following command.
 
     go get -u github.com/ryu22e/zenhan-go
 
+## Usage
+
+    package main
+
+    import (
+        "fmt"
+        "github.com/ryu22e/zenhan-go"
+    )
+
+    const (
+        hankaku = "ABC123ｱｲｳﾊﾟﾋﾟﾌﾟ"
+        zenkaku = "ＡＢＣ１２３アイウ"
+    )
+
+    func main() {
+        fmt.Println(zenhan.H2z(hankaku, zenhan.ASCII))
+        // ＡＢＣ123ｱｲｳﾊﾟﾋﾟﾌﾟ
+        fmt.Println(zenhan.H2z(hankaku, zenhan.DIGIT))
+        // ABC１２３ｱｲｳﾊﾟﾋﾟﾌﾟ
+        fmt.Println(zenhan.H2z(hankaku, zenhan.KANA))
+        // ABC123アイウパピプ
+        fmt.Println(zenhan.H2z(hankaku, zenhan.ALL))
+        // ＡＢＣ１２３アイウパピプ
+        fmt.Println(zenhan.H2z(hankaku, zenhan.ALL, "A", "1", "ｱ"))
+        // AＢＣ1２３ｱイウパピプ
+
+        fmt.Println(zenhan.Z2h(zenkaku, zenhan.ASCII))
+        // ABC１２３アイウ
+        fmt.Println(zenhan.Z2h(zenkaku, zenhan.DIGIT))
+        // ＡＢＣ123アイウ
+        fmt.Println(zenhan.Z2h(zenkaku, zenhan.KANA))
+        // ＡＢＣ１２３ｱｲｳ
+        fmt.Println(zenhan.Z2h(zenkaku, zenhan.ALL))
+        // ABC123ｱｲｳ
+        fmt.Println(zenhan.Z2h(zenkaku, zenhan.ALL, "Ａ", "１", "ア"))
+        // ＡBC１23アｲｳ
+    }
+
 [![wercker status](https://app.wercker.com/status/0e94b800e126ee0878d00186379a293e/m "wercker status")](https://app.wercker.com/project/bykey/0e94b800e126ee0878d00186379a293e)
