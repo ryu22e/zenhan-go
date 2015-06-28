@@ -7,6 +7,6 @@ This is clone of [zenhan-py](https://github.com/sspiral/zenhan-py)
 
 Run the following command.
 
-    go get -u github.com/ryu23e/zenhan-go
+    go get -u github.com/ryu22e/zenhan-go
 
 [![wercker status](https://app.wercker.com/status/0e94b800e126ee0878d00186379a293e/m "wercker status")](https://app.wercker.com/project/bykey/0e94b800e126ee0878d00186379a293e)
