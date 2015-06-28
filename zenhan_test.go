@@ -71,6 +71,15 @@ func TestH2zInvalid(t *testing.T) {
 	}
 }
 
+func TestH2zEmpty(t *testing.T) {
+	text := ""
+	actual := H2z(text, ALL)
+	expected := text
+	if expected != actual {
+		t.Errorf("Expected empty, but %s found", actual)
+	}
+}
+
 func TestH2zAll(t *testing.T) {
 	actual1 := H2z(original, ALL)
 	expected := "゜ａｂｃＤＥ゛Ｆ１２３４５６アガサダナバビプペ゜"
@@ -145,6 +154,15 @@ func TestZ2hInvalid(t *testing.T) {
 	expected := text
 	if expected != actual {
 		t.Errorf("Expected %s, but %s found", expected, actual)
+	}
+}
+
+func TestZ2hEmpty(t *testing.T) {
+	text := ""
+	actual := Z2h(text, ALL)
+	expected := text
+	if expected != actual {
+		t.Errorf("Expected empty, but %s found", actual)
 	}
 }
 
