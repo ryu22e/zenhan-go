@@ -32,6 +32,14 @@ var (
 	hzKANA  map[string]string
 )
 
+func zip(a []string, b []string) map[string]string {
+	m := make(map[string]string)
+	for i, s := range a {
+		m[s] = b[i]
+	}
+	return m
+}
+
 func join(m1 map[string]string, m2 map[string]string) map[string]string {
 	m := make(map[string]string)
 	for k, v := range m1 {
@@ -104,32 +112,14 @@ func init() {
 		"ﾊﾟ", "ﾋﾟ", "ﾌﾟ", "ﾍﾟ", "ﾎﾟ",
 		"｡", "､", "･", "ﾞ", "ﾟ", "｢", "｣", "ｰ"}
 
-	zhASCII = make(map[string]string)
-	for i, s := range zASCII {
-		zhASCII[s] = hASCII[i]
-	}
-	hzASCII = make(map[string]string)
-	for i, s := range hASCII {
-		hzASCII[s] = zASCII[i]
-	}
+	zhASCII = zip(zASCII, hASCII)
+	hzASCII = zip(hASCII, zASCII)
 
-	zhDIGIT = make(map[string]string)
-	for i, s := range zDigit {
-		zhDIGIT[s] = hDigit[i]
-	}
-	hzDIGIT = make(map[string]string)
-	for i, s := range hDigit {
-		hzDIGIT[s] = zDigit[i]
-	}
+	zhDIGIT = zip(zDigit, hDigit)
+	hzDIGIT = zip(hDigit, zDigit)
 
-	zhKANA = make(map[string]string)
-	for i, s := range zKana {
-		zhKANA[s] = hKana[i]
-	}
-	hzKANA = make(map[string]string)
-	for i, s := range hKana {
-		hzKANA[s] = zKana[i]
-	}
+	zhKANA = zip(zKana, hKana)
+	hzKANA = zip(hKana, zKana)
 }
 
 func makeHan2zenDict(mode flag) map[string]string {
