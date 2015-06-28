@@ -162,9 +162,8 @@ func makeZen2hanDict(mode flag) map[string]string {
 func getValueFromMap(m map[string]string, key string, defaultValue string) string {
 	if v, ok := m[key]; ok {
 		return v
-	} else {
-		return defaultValue
 	}
+	return defaultValue
 }
 
 func any(array []string, value string) bool {
