@@ -167,14 +167,25 @@ func getValueFromMap(m map[string]string, key string, defaultValue string) strin
 	}
 }
 
+func any(array []string, value string) bool {
+	for _, v := range array {
+		if value == v {
+			return true
+		}
+	}
+	return false
+}
+
 // H2z converts string from hankaku to zenkaku
-func H2z(text string, mode flag) string {
+func H2z(text string, mode flag, ignore ...string) string {
 	m := makeHan2zenDict(mode)
 	t := []rune(text)
 	converted := make([]string, 0, len(t))
 	for i, v := range t {
 		curr := string(v)
-		if curr == dakuten || curr == handakuten && i > 0 {
+		if any(ignore, curr) {
+			converted = append(converted, curr)
+		} else if curr == dakuten || curr == handakuten && i > 0 {
 			prev := string(t[i-1])
 			if z, ok := m[prev+curr]; ok {
 				converted = converted[:len(converted)-1]
@@ -190,13 +201,17 @@ func H2z(text string, mode flag) string {
 }
 
 // Z2h converts string from zenkaku to hankaku
-func Z2h(text string, mode flag) string {
+func Z2h(text string, mode flag, ignore ...string) string {
 	m := makeZen2hanDict(mode)
 	t := []rune(text)
 	converted := make([]string, 0, len(t))
 	for _, v := range t {
 		curr := string(v)
-		converted = append(converted, getValueFromMap(m, curr, curr))
+		if any(ignore, curr) {
+			converted = append(converted, curr)
+		} else {
+			converted = append(converted, getValueFromMap(m, curr, curr))
+		}
 	}
 	return strings.Join(converted, "")
 }
