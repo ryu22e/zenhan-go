@@ -1,3 +1,4 @@
+// Package zenhan provides convertion between Zenkaku(fullwidth Japanese) and Hankaku(halfwidth Japanese)
 package zenhan
 
 import (
