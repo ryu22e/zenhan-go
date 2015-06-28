@@ -1,0 +1,11 @@
+box: wercker/golang
+build:
+    steps:
+        - wercker/golint
+        - script:
+            name: run test
+            code: |-
+                go test
+    after-steps:
+        - wantedly/pretty-slack-notify:
+            webhook_url: $SLACK_WEBHOOK_URL
