@@ -67,7 +67,7 @@ func TestH2zAll(t *testing.T) {
 }
 
 func TestZ2hAsciiOnly(t *testing.T) {
-	actual := Z2h(original, ALL)
+	actual := Z2h(original, ASCII)
 	expected := "ﾟabcDEﾞF123４５６ｱｶﾞｻダナバビﾌﾟﾍﾟﾟ"
 	if expected != actual {
 		t.Errorf("Expected %s, but %s found", expected, actual)
