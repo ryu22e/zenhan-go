@@ -62,6 +62,15 @@ func TestH2zIgnore(t *testing.T) {
 	}
 }
 
+func TestH2zInvalid(t *testing.T) {
+	text := string([]byte{0xff, 0xfe, 0xfd})
+	actual := H2z(text, ALL)
+	expected := text
+	if expected != actual {
+		t.Errorf("Expected %s, but %s found", expected, actual)
+	}
+}
+
 func TestH2zAll(t *testing.T) {
 	actual1 := H2z(original, ALL)
 	expected := "゜ａｂｃＤＥ゛Ｆ１２３４５６アガサダナバビプペ゜"
@@ -125,6 +134,15 @@ func TestZ2hDigitAndKana(t *testing.T) {
 func TestZ2hIgnore(t *testing.T) {
 	actual := Z2h(original, ALL, "Ｄ", "４", "５")
 	expected := "ﾟabcＤEﾞF123４５6ｱｶﾞｻﾀﾞﾅﾊﾞﾋﾞﾌﾟﾍﾟﾟ"
+	if expected != actual {
+		t.Errorf("Expected %s, but %s found", expected, actual)
+	}
+}
+
+func TestZ2hInvalid(t *testing.T) {
+	text := string([]byte{0xff, 0xfe, 0xfd})
+	actual := Z2h(text, ALL)
+	expected := text
 	if expected != actual {
 		t.Errorf("Expected %s, but %s found", expected, actual)
 	}

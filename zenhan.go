@@ -3,6 +3,7 @@ package zenhan
 
 import (
 	"strings"
+	"unicode/utf8"
 )
 
 type flag uint
@@ -168,6 +169,9 @@ func any(array []string, value string) bool {
 
 // H2z converts string from hankaku to zenkaku
 func H2z(text string, mode flag, ignore ...string) string {
+	if !utf8.ValidString(text) {
+		return text
+	}
 	m := makeHan2zenDict(mode)
 	t := []rune(text)
 	converted := make([]string, 0, len(t))
@@ -192,6 +196,9 @@ func H2z(text string, mode flag, ignore ...string) string {
 
 // Z2h converts string from zenkaku to hankaku
 func Z2h(text string, mode flag, ignore ...string) string {
+	if !utf8.ValidString(text) {
+		return text
+	}
 	m := makeZen2hanDict(mode)
 	t := []rune(text)
 	converted := make([]string, 0, len(t))
