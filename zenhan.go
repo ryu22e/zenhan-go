@@ -175,8 +175,8 @@ func H2z(text string, mode flag) string {
 	for i, v := range t {
 		curr := string(v)
 		if curr == dakuten || curr == handakuten && i > 0 {
-			pref := string(t[i-1])
-			if z, ok := m[pref+curr]; ok {
+			prev := string(t[i-1])
+			if z, ok := m[prev+curr]; ok {
 				converted = converted[:len(converted)-1]
 				converted = append(converted, z)
 			} else {
