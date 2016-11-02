@@ -47,4 +47,4 @@ Run the following command.
         // ＡBC１23アｲｳ
     }
 
-[![wercker status](https://app.wercker.com/status/0e94b800e126ee0878d00186379a293e/m "wercker status")](https://app.wercker.com/project/bykey/0e94b800e126ee0878d00186379a293e)
+[![wercker status](https://app.wercker.com/status/11360f18dee678ff652cfb579e4fdd5e/s/master "wercker status")](https://app.wercker.com/project/byKey/11360f18dee678ff652cfb579e4fdd5e)
