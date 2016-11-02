@@ -3,6 +3,10 @@ build:
     steps:
         - wercker/golint
         - script:
+            name: go build
+            code: |-
+                go build
+        - script:
             name: run test
             code: |-
                 go test
