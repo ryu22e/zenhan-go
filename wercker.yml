@@ -7,7 +7,7 @@ build:
             code: |-
                 go build
         - script:
-            name: run test
+            name: go test
             code: |-
                 go test
     after-steps:
